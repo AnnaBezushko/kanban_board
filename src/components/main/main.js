@@ -1,36 +1,7 @@
 import css from "./main.module.scss";
 import Column from "./column/column";
-import { useState } from "react";
+import {filterBacklog, filterFinished, filterInProgress, filterReady, taskStatus} from "./taskStatus";
 
-const taskStatus = {
-  backlog: "backlog",
-  ready: "ready",
-  inProgress: "inProgress",
-  finished: "finished",
-};
-const filterBacklog = (task) => task.status === taskStatus.backlog;
-const filterReady = (task) => task.status === taskStatus.ready;
-const filterInProgress = (task) => task.status === taskStatus.inProgress;
-const filterFinished = (task) => task.status === taskStatus.finished;
-
-let id = 1;
-// let initialState = {
-//   tasks: [
-//     createTask("Sprint bugfix"),
-//     createTask("Login page – performance issues"),
-//   ],
-// };
-
-export function createTask(name, description = "") {
-  const task = {
-    id: id,
-    name,
-    description,
-    status: taskStatus.backlog,
-  };
-  id += 1;
-  return task;
-}
 const Main = ({ state, setState }) => {
   const addTask = (columnName) => (task) => {
     const newState = {
