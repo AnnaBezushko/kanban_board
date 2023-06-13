@@ -1,0 +1,29 @@
+.header {
+  display: flex;
+  flex-direction: row;
+  background-color: #0067A3;
+  justify-content: space-between;
+
+}
+.awesome{
+  color: rgba(255, 255, 255, 1);
+  font-size: 28px;
+  line-height: 33px;
+  text-align: left;
+  vertical-align: top;
+  padding-top: 11px;
+  padding-left: 20px;
+  padding-bottom: 18px;
+}
+
+@media (max-width: 1160px) {
+  .header {
+        background-color: #0079BF;
+    justify-content: flex-end;
+    margin-bottom: 50px;
+
+  }
+  .awesome{
+display: none;
+  }
+}

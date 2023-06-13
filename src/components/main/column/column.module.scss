@@ -1,0 +1,14 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 282px;
+  border-radius: 10px;
+  background-color: #EBECF0;
+  font-size: 18px;
+}
+
+@media (max-width: 1160px) {
+  .column {
+   margin: 25px;
+  }
+}
