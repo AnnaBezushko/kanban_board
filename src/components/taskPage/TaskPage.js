@@ -3,7 +3,7 @@ import {updateTasksArrayAndGetNewState} from "../main/stateManagement";
 import {useState} from "react";
 
 function getTaskById(state, taskId){
-    return state.tasks.filter((task) => task.id === taskId);
+    return state.tasks.filter((task) => task.id === taskId)[0];
 }
 
 function BackButton(){
@@ -19,12 +19,11 @@ function editDescription(state, setState, task, description){
 export function TaskPage({state, setState}) {
     const [isEditorOpened, setIsEditorOpened] = useState(false);
     const {taskId} = useParams();
-    const task = getTaskById(state, taskId)[0];
+    const task = getTaskById(state, taskId) ;
     const handleDescriptionChange = (e) => {
         editDescription(state, setState, task, e.target.value);
         if(!e.target.value) setIsEditorOpened(false);
     };
-    console.log(task.description);
     if (!task) {
         return <div>Задача не найдена.<BackButton/></div>;
     }

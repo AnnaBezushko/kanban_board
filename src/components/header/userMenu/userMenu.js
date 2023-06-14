@@ -1,9 +1,11 @@
 import css from './userMenu.module.scss'
 import Dropdown from "./dropdown/dropdown";
+import {useState} from "react";
 
 const UserMenu = () => {
+    const [isOpened, setIsOpened] = useState(false);
     return (
-    <div className = {css.userMenu}>
+    <div className = {css.userMenu} onClick={() => setIsOpened(!isOpened)}>
             <svg className={css.avatar} width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <g clip-path="url(#clip0_2_4)">
                     <path d="M20 39.2C30.6039 39.2 39.2 30.6039 39.2 20C39.2 9.39612 30.6039 0.799988 20 0.799988C9.39612 0.799988 0.799988 9.39612 0.799988 20C0.799988 30.6039 9.39612 39.2 20 39.2Z" stroke="white" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round"/>
@@ -20,7 +22,7 @@ const UserMenu = () => {
                 <path d="M1.415 0.209991L6 4.79499L10.585 0.209991L12 1.62499L6 7.62499L0 1.62499L1.415 0.209991Z" fill="white"/>
             </svg>
 
-        <Dropdown/>
+        {isOpened && <Dropdown/>}
 
     </div>
     )

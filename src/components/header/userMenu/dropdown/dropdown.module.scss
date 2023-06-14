@@ -16,6 +16,13 @@
   line-height: 24px;
   padding-bottom: 8px;
 }
+
+.dropdownUl li {
+  cursor: pointer;
+}
+.dropdownUl li:hover{
+  background-color: #EBECF0;
+}
 .rhomb {
   margin-top: 0;
   padding-left: 12px;
