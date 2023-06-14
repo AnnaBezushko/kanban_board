@@ -14,7 +14,8 @@ import {
 } from "react-router-dom";
 import Details from "../main/details/details";
 import { useState } from "react";
-import {createTask, filterBacklog, filterFinished} from "../main/taskStatus";
+import {createTask, filterBacklog, filterFinished} from "../main/stateManagement";
+import {TaskPage} from "../taskPage/TaskPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -60,7 +61,10 @@ const Layout = () => {
         <Route
           path="/"
           element={<Main state={state} setState={setStateWithLocalStorage} router={router} />}
-        />
+        /><Route
+          path="/task/:taskId"
+          element={<TaskPage state={state} setState={setStateWithLocalStorage} />}
+      />
       </Routes>
       <Footer finishedCount={finishedCount} activeCount={activeCount}/>
     </div>

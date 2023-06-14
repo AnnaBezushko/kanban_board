@@ -1,12 +1,12 @@
 import css from "./card.module.scss";
 import Details from "../../details/details";
 import { Routes } from "react-router";
-import { Route } from "react-router-dom";
+import {Link, Route} from "react-router-dom";
 
 const Card = (props) => {
   return (
     <div className={css.card}>
-      {props.task.name}
+        <Link to={`/task/${props.task.id}`}>{props.task.name}</Link>
       <span> id = {props.task.id} </span>
       <Routes>
         <Route

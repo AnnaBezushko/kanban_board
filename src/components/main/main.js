@@ -1,6 +1,6 @@
 import css from "./main.module.scss";
 import Column from "./column/column";
-import {filterBacklog, filterFinished, filterInProgress, filterReady, taskStatus} from "./taskStatus";
+import {filterBacklog, filterFinished, filterInProgress, filterReady, taskStatus} from "./stateManagement";
 
 const Main = ({ state, setState }) => {
   const addTask = (columnName) => (task) => {

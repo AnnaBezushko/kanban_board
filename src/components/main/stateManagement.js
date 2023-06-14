@@ -18,3 +18,14 @@ export function createTask(name, description = "") {
         status: taskStatus.backlog,
     };
 }
+
+export function updateTasksArrayAndGetNewState(state, task){
+    const tasks = [...state.tasks];
+    console.log(state, task);
+    const index = tasks.findIndex((t) => t.id === task.id);
+    if(index === -1){
+        throw Error(`Undefined task ${task.id}`);
+    }
+    tasks[index] = task;
+    return {...state, tasks}
+}

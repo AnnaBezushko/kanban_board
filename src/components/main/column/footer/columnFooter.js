@@ -4,7 +4,7 @@ import SubmitButton from "./submitButton/submitButton";
 import CardsDropdown from "./cardsDropdown/cardsDropdown";
 import { useState } from "react";
 import Input from "./input/input";
-import {createTask} from "../../taskStatus";
+import {createTask} from "../../stateManagement";
 
 const ColumnFooter = (props) => {
   const [task, setTask] = useState();
