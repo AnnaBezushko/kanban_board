@@ -1,6 +1,7 @@
 import {useNavigate, useParams} from "react-router";
 import {updateTasksArrayAndGetNewState} from "../main/stateManagement";
 import {useState} from "react";
+import css from "./TaskPage.module.scss";
 
 function getTaskById(state, taskId){
     return state.tasks.filter((task) => task.id === taskId)[0];
@@ -8,7 +9,7 @@ function getTaskById(state, taskId){
 
 function BackButton(){
     const navigate = useNavigate();
-    return <button onClick={() => navigate('/')}>На главную</button>
+    return <button className={css.backButton} onClick={() => navigate('/')}>На главную</button>
 }
 
 function editDescription(state, setState, task, description){
@@ -25,14 +26,19 @@ export function TaskPage({state, setState}) {
         if(!e.target.value) setIsEditorOpened(false);
     };
     if (!task) {
-        return <div>Задача не найдена.<BackButton/></div>;
+        return <div className={css.container}>Задача не найдена.<BackButton/></div>;
     }
-    return <div>
-        {task.name}
+    return <div className={css.container}>
+        <span className={css.title}>{task.name}</span>
         {(task.description || isEditorOpened) ?
-            <textarea value={task.description} onChange={handleDescriptionChange}></textarea> :
+            <textarea
+                className={css.editor}
+                value={task.description}
+                onChange={handleDescriptionChange}
+                placeholder={'Enter description...'}
+            /> :
             <div onClick={() => setIsEditorOpened(true)} style={{cursor: 'pointer'}}>
-                This task has no description
+                This task has no description. Click to enter...
             </div>
         }
         <BackButton/>

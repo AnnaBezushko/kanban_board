@@ -6,8 +6,7 @@ import {Link, Route} from "react-router-dom";
 const Card = (props) => {
   return (
     <div className={css.card}>
-        <Link to={`/task/${props.task.id}`}>{props.task.name}</Link>
-      <span> id = {props.task.id} </span>
+        <Link to={`/task/${props.task.id}`} className={css.cardTitle}>{props.task.name}</Link>
       <Routes>
         <Route
           path="/details/{props.task.id}"
