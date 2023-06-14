@@ -7,28 +7,29 @@ import Input from "./input/input";
 import {createTask} from "../../stateManagement";
 
 const ColumnFooter = (props) => {
-  const [task, setTask] = useState();
+  const [task, setTask] = useState(null);
   const [shown, setShown] = useState(false);
-  const [name, setName] = useState();
+  const [name, setName] = useState('');
   function handleClick() {
     console.log(task);
     if (props.withInput) {
       if (name) {
         const newTask = createTask(name);
         props.addTask(newTask);
-        setName(undefined);
+        setName('');
       }
     } else {
       if (task) {
         props.addTask(task);
-        setTask(undefined);
+        setTask(null);
       }
     }
+    setShown(false);
   }
 
   return (
     <footer className={css.columnFooter}>
-      {shown && props.withInput && <Input setName={setName} />}
+      {shown && props.withInput && <Input name={name} setName={setName} />}
       <br />
       {shown && !props.withInput && (
         <CardsDropdown

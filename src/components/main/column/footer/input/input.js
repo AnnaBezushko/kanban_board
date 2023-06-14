@@ -7,6 +7,7 @@ const Input = (props) => {
   }
   return (
     <input
+      value={props.name}
       placeholder="__________________________________"
       onChange={handleChange}
       className={css.input}
