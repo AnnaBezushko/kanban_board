@@ -1,4 +1,5 @@
 .container{
+  position: relative;
   background-color: #FFFFFF;
   border-radius: 10px;
   margin: 15px;
@@ -17,4 +18,15 @@
 
 .backButton{
   margin: 15px 0 0;
+}
+
+.empty{
+  cursor: pointer;
+}
+
+.close{
+  cursor: pointer;
+  position: absolute;
+  right: 23px;
+  top: 17px;
 }

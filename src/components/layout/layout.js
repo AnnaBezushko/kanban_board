@@ -5,68 +5,23 @@ import Main from "../main/main";
 
 import React from "react";
 import { Routes } from "react-router";
-import {
-  BrowserRouter,
-  Router,
-  Route,
-  createBrowserRouter,
-  RouterProvider,
-} from "react-router-dom";
-import Details from "../main/details/details";
-import { useState } from "react";
-import {createTask, filterBacklog, filterFinished} from "../main/stateManagement";
-import {TaskPage} from "../taskPage/TaskPage";
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Main />,
-  },
-  {
-    path: "/details/{props.task.id}",
-    element: <Details />,
-  },
-]);
-
-const initialState = {
-  tasks: [
-    createTask("Sprint bugfix"),
-    createTask("Login page – performance issues"),
-  ],
-};
-
-function loadState(){
-  const kanbanState = localStorage.getItem('kanbanState');
-  if(!kanbanState) return initialState;
-
-  try {
-    return JSON.parse(kanbanState);
-  } catch (e) {
-    throw Error('Bad kanbanState, clear localstorage');
-  }
-}
+import { Route } from "react-router-dom";
+import { TaskPage } from "../taskPage/TaskPage";
+import { useTasks } from "../hooks/tasks/taskProvider";
 
 const Layout = () => {
-  const [state, setState] = useState(loadState());
-  const finishedCount = state.tasks.filter(filterFinished).length;
-  const activeCount = state.tasks.filter(filterBacklog).length;
-  const setStateWithLocalStorage = (state) => {
-    localStorage.setItem('kanbanState', JSON.stringify(state));
-    setState(state);
-  }
-
+  const { getActiveTaskCount, getFinishedTaskCount } = useTasks();
   return (
     <div className={css.background}>
       <Header />
       <Routes>
-        <Route
-          path="/"
-          element={<Main state={state} setState={setStateWithLocalStorage} router={router} />}
-        /><Route
-          path="/task/:taskId"
-          element={<TaskPage state={state} setState={setStateWithLocalStorage} />}
-      />
+        <Route path="/" element={<Main />} />
+        <Route path="/task/:taskId" element={<TaskPage />} />
       </Routes>
-      <Footer finishedCount={finishedCount} activeCount={activeCount}/>
+      <Footer
+        finishedCount={getFinishedTaskCount()}
+        activeCount={getActiveTaskCount()}
+      />
     </div>
   );
 };

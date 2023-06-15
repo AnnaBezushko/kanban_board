@@ -4,23 +4,25 @@ import SubmitButton from "./submitButton/submitButton";
 import CardsDropdown from "./cardsDropdown/cardsDropdown";
 import { useState } from "react";
 import Input from "./input/input";
-import {createTask} from "../../stateManagement";
+import { useTasks } from "../../../hooks/tasks/taskProvider";
 
 const ColumnFooter = (props) => {
+  const { createTask, updateTask, tasks } = useTasks();
   const [task, setTask] = useState(null);
   const [shown, setShown] = useState(false);
-  const [name, setName] = useState('');
+  const [name, setName] = useState("");
+  const isBacklogTask = props.state === "backlog";
   function handleClick() {
-    console.log(task);
-    if (props.withInput) {
+    if (isBacklogTask) {
       if (name) {
-        const newTask = createTask(name);
-        props.addTask(newTask);
-        setName('');
+        createTask(name);
+        setName("");
       }
     } else {
       if (task) {
-        props.addTask(task);
+        console.log(task);
+        task.status = props.state;
+        updateTask(task);
         setTask(null);
       }
     }
@@ -29,24 +31,21 @@ const ColumnFooter = (props) => {
 
   return (
     <footer className={css.columnFooter}>
-      {shown && props.withInput && <Input name={name} setName={setName} />}
-      <br />
-      {shown && !props.withInput && (
+      {shown && isBacklogTask && <Input name={name} setName={setName} />}
+      {shown && !isBacklogTask && (
         <CardsDropdown
           setTask={setTask}
           task={task}
-          selectOptions={props.selectOptions}
+          selectOptions={tasks.filter((t) => t.status === props.ancestor)}
         />
       )}
-      <br />
-      {!name && !task && (
+      {!name && !task && !shown && (
         <AddButton
           onClick={() => {
             setShown(true);
           }}
         />
       )}
-      <br />
       {(name || task) && <SubmitButton onClick={handleClick} />}
     </footer>
   );

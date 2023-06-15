@@ -20,7 +20,10 @@ const UserMenu = () => {
 
         {isOpened ? <svg className={css.arrow} width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M1.415 0.209991L6 4.79499L10.585 0.209991L12 1.62499L6 7.62499L0 1.62499L1.415 0.209991Z" fill="white"/>
-        </svg> : <span>^</span>}
+        </svg> : <svg className={css.arrow} width="12" height="8" viewBox="0 0 12 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M1.415 7.79001L6 3.20501L10.585 7.79001L12 6.37501L6 0.375008L0 6.37501L1.415 7.79001Z" fill="white"/>
+        </svg>
+        }
 
         {isOpened && <Dropdown/>}
 
