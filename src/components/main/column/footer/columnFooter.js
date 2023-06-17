@@ -28,6 +28,7 @@ const ColumnFooter = (props) => {
     }
     setShown(false);
   }
+  const previousTasks = tasks.filter((t) => t.status === props.ancestor);
 
   return (
     <footer className={css.columnFooter}>
@@ -36,7 +37,7 @@ const ColumnFooter = (props) => {
         <CardsDropdown
           setTask={setTask}
           task={task}
-          selectOptions={tasks.filter((t) => t.status === props.ancestor)}
+          selectOptions={previousTasks}
         />
       )}
       {!name && !task && !shown && (
@@ -44,6 +45,7 @@ const ColumnFooter = (props) => {
           onClick={() => {
             setShown(true);
           }}
+          disabled={!previousTasks.length}
         />
       )}
       {(name || task) && <SubmitButton onClick={handleClick} />}
