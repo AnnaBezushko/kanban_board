@@ -1,7 +1,6 @@
 import css from "./cardsDropdown.module.scss";
 import Select from "react-select";
 import { DropdownIndicator } from "./reactSelectParts";
-import { hover } from "@testing-library/user-event/dist/hover";
 
 const CardsDropdown = (props) => {
   const handleChange = (selectOption) => {
@@ -44,7 +43,7 @@ const CardsDropdown = (props) => {
         options={props.selectOptions.map((task) => ({
           value: task,
           label: task.name,
-        
+
         }))}
         components={{ DropdownIndicator }}
       />
