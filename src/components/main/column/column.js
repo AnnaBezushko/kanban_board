@@ -16,8 +16,8 @@ const Column = (props) => {
           .map((task) => (
             <Card task={task} key={task.id} />
           ))}
+        <ColumnFooter state={props.state} ancestor={props.ancestor} />
       </div>
-      <ColumnFooter state={props.state} ancestor={props.ancestor} />
     </div>
   );
 };

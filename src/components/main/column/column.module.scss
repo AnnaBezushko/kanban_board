@@ -7,6 +7,7 @@
   background-color: #EBECF0;
   font-size: 18px;
   align-self: start;
+  padding-bottom: 8px;
 }
 
 .scrollContainer{
@@ -14,9 +15,22 @@
   height: 100%;
   max-height: 500px;
   flex-direction: column;
-  overflow-y: scroll;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
+::-webkit-scrollbar{
+  width: 12px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #CBCBCB;
+  border-radius: 5px;
+}
+
+::-webkit-scrollbar-track {
+ background-color: #FFFFFF; 
+}
 .scrollContainer footer{
   margin-top: auto;
 }
